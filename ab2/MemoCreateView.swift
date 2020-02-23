@@ -10,11 +10,7 @@ import SwiftUI
 import KeyboardObserving
 
 
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
+
 
 struct MemoCreateView: View {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -49,16 +45,7 @@ struct MemoCreateView: View {
                 .frame(width: 100.0)
                 Spacer()
                 Button(action: {
-                    let memo = Memo(context: self.context)
-                    memo.fact = self.fact
-                    memo.abstract = self.abstract
-                    memo.product = self.product
-                    memo.createdAt = Date()
-                    do {
-                        try self.context.save()
-                    } catch {
-                        print(error)
-                    }
+                    MemoController.create(fact: self.fact, abstract: self.abstract, product: self.product)
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("save")

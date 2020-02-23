@@ -8,9 +8,7 @@
 
 import SwiftUI
 
-struct MemoEditView: View {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+struct MemoEditView: View {    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let memo:Memo
@@ -44,14 +42,7 @@ struct MemoEditView: View {
                 .frame(width: 100.0)
                 Spacer()
                 Button(action: {
-                    self.memo.fact = self.fact
-                    self.memo.abstract = self.abstract
-                    self.memo.product = self.product
-                    do {
-                        try self.context.save()
-                    } catch {
-                        print(error)
-                    }
+                    MemoController.update(memo: self.memo, fact: self.fact, abstract: self.abstract, product: self.product)
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("save")
@@ -65,7 +56,9 @@ struct MemoEditView: View {
                     .font(.headline).padding(.bottom, -5.0)
                 MultilineField(text: $fact)
                     .onAppear {
-                        self.fact = self.memo.fact!.description
+                        if let unwrapped = self.memo.fact {
+                            self.fact = unwrapped.description
+                        }
                 }
                 .frame(height: 100)
                 .overlay(
@@ -77,7 +70,9 @@ struct MemoEditView: View {
                     .font(.headline).padding(.bottom, -5.0).padding(.top, 20)
                 MultilineField(text: $abstract)
                     .onAppear {
-                        self.abstract = self.memo.abstract!.description
+                        if let unwrapped = self.memo.abstract {
+                            self.abstract = unwrapped.description
+                        }
                 }
                 .frame(height: 100)
                 .overlay(
@@ -89,7 +84,9 @@ struct MemoEditView: View {
                     .font(.headline).padding(.bottom, -5.0).padding(.top, 20)
                 MultilineField(text: $product)
                     .onAppear {
-                        self.product = self.memo.product!.description
+                        if let unwrapped = self.memo.product {
+                            self.product = unwrapped.description
+                        }
                 }
                 .frame(height: 100)
                 .overlay(
@@ -107,9 +104,3 @@ struct MemoEditView: View {
         }
     }
 }
-
-//struct MemoEditView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MemoEditView()
-//    }
-//}

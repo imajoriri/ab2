@@ -19,4 +19,29 @@ struct MemoController {
             print(error)
         }
     }
+    
+    static func create(fact: String, abstract: String, product: String) {
+        let memo = Memo(context: self.context)
+        memo.fact = fact
+        memo.abstract = abstract
+        memo.product = product
+        memo.createdAt = Date()
+        do {
+            try self.context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    static func update(memo: Memo, fact: String, abstract: String, product: String) {
+        memo.fact = fact
+        memo.abstract = abstract
+        memo.product = product
+        memo.createdAt = Date()
+        do {
+            try self.context.save()
+        } catch {
+            print(error)
+        }
+    }
 }

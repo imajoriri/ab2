@@ -30,12 +30,23 @@ struct MemoContent: View {
 struct MemoDetailView: View {
     let memo:Memo
     @State var isEditView:Bool = false
+    
+    var fact:String
+    var abstract:String
+    var product:String
+    
+    init(memo:Memo) {
+        self.memo = memo
+        self.fact = memo.fact != nil ? memo.fact!.description : ""
+        self.abstract = memo.abstract != nil ? memo.abstract!.description : ""
+        self.product = memo.product != nil ? memo.product!.description : ""
+    }
 
     var body: some View {
         VStack {
-            MemoContent(title: "fact", content: memo.fact!.description)
-            MemoContent(title: "abstract", content: memo.abstract!.description)
-            MemoContent(title: "product", content: memo.product!.description)
+            MemoContent(title: "fact", content: self.fact)
+            MemoContent(title: "abstract", content: self.abstract)
+            MemoContent(title: "product", content: self.product)
             Spacer()
         }
         .navigationBarItems(trailing: Button(action: {

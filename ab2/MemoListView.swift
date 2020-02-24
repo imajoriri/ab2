@@ -8,17 +8,12 @@
 
 import SwiftUI
 
-struct MemoTag: View {
-    let text:String
-    let systemName:String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: systemName)
-            Text(text)
-                .offset(x: -5)
-        }
-    }
+
+
+enum MemoListType {
+    case all
+    case unfinished
+    case product
 }
 
 struct MemoListView: View {
@@ -27,6 +22,7 @@ struct MemoListView: View {
     @State var isCreateView:Bool = true
     @State var deleteAlert:Bool = false
     @State var deleteMemo: MemoId?
+    @State var segmentPicker:MemoListType = .all
     
     func showDeleteAlert(offsets: IndexSet) {
         self.deleteMemo = MemoId(id: String(offsets.first!), memo: self.memos[offsets.first!])
@@ -36,68 +32,73 @@ struct MemoListView: View {
         var id:String
         var memo:Memo
     }
-
+    
+    func isShowMemo(memo: Memo, listType: MemoListType) -> Bool {
+        switch listType {
+        case .all:
+            return true
+        case .unfinished:
+            if let unwrappedProduct = memo.product {
+                return unwrappedProduct.description.isEmpty
+            }
+            return true
+        case .product:
+            if let unwrappedProduct = memo.product {
+                return !unwrappedProduct.description.isEmpty
+            }
+            return false
+        }
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(memos, id: \.self) { memo in
-                    NavigationLink(destination: MemoDetailView(memo: memo)) {
-                        VStack(alignment: .leading) {
-                            Text(memo.fact!.description)
-                                .fontWeight(.bold)
-                            
-                            HStack {
-                                if !memo.fact!.description.isEmpty {
-                                    MemoTag(text: "事実", systemName: "pencil")
-                                }
-                                if !memo.abstract!.description.isEmpty {
-                                    MemoTag(text: "抽象化", systemName: "paperclip")
-                                }
-                                if !memo.product!.description.isEmpty {
-                                    MemoTag(text: "プロダクト", systemName: "heart")
-                                }
-                                Spacer()
-                            }
-                            .frame(width: 300)
-                        }
-                        
-                    }
-                    
+            VStack {
+                Picker(selection: $segmentPicker, label: Text("none")) {
+                    Text("全て").tag(MemoListType.all)
+                    Text("未達成").tag(MemoListType.unfinished)
+                    Text("プロダクト ").tag(MemoListType.product)
                 }
-                .onDelete(perform: showDeleteAlert)
-                .alert(item: self.$deleteMemo) { memo in
-                    Alert(title: Text("削除しますか？"),
-                          primaryButton: .destructive(Text("Delete")) {
-                            if let unwrappedDeleteMemo = self.deleteMemo {
-                                MemoController.delete(memo: unwrappedDeleteMemo.memo)
-                            }
-                            
-                        },
-                          secondaryButton: .cancel() {
-                            
-                        })
-                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal, 16.0)
                 
+                List {
+                    ForEach(memos, id: \.self) { memo in
+                        Group {
+                            if self.isShowMemo(memo: memo, listType: self.segmentPicker) {
+                                NavigationLink(destination: MemoDetailView(memo: memo)) {
+                                    MemoListRow(memo: memo)
+                                }
+                            }
+                        }
+                    }
+                    .onDelete(perform: showDeleteAlert)
+                    .alert(item: self.$deleteMemo) { memo in
+                        Alert(title: Text("削除しますか？"),
+                              primaryButton: .destructive(Text("Delete")) {
+                                if let unwrappedDeleteMemo = self.deleteMemo {
+                                    MemoController.delete(memo: unwrappedDeleteMemo.memo)
+                                }
+                            },
+                              secondaryButton: .cancel() {
+                            })
+                    }
+                }
+                .navigationBarTitle(Text("メモ"))
+                .navigationBarItems(trailing: Button(action: {
+                    self.isCreateView = true
+                }, label: {
+                    Text("add")
+                })
+                    .sheet(isPresented: $isCreateView) {
+                        MemoCreateView()
+                })
             }
-            .navigationBarTitle(Text("Today"))
-            .navigationBarItems(trailing: Button(action: {
-                self.isCreateView = true
-            }, label: {
-                Text("add")
-            })
-            .sheet(isPresented: $isCreateView) {
-                MemoCreateView()
-            })
         }
-        .onAppear(perform: {
-            self.isCreateView = true
-        })
-        
     }
 }
 
 struct MemoListView_Previews: PreviewProvider {
     static var previews: some View {
-        MemoListView()
+        return MemoTag(text: "事実", systemName: "paperclip")
     }
 }

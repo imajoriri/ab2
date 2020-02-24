@@ -11,17 +11,27 @@ import SwiftUI
 struct MemoContent: View {
     let title:String
     let content:String
+    let systemName:String
     @State var isEditView:Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(self.title)
-                    .font(.title)
+                Image(systemName: systemName)
+                    .resizable()
+                    .frame(width: 11.0, height: 11.0)
                     .foregroundColor(Color.gray)
+                
+                Text(self.title)
+                    .offset(x: -5)
+                    .font(.system(size: 16.0))
+                    .foregroundColor(Color.gray)
+                    
                 Spacer()
             }
+            
             Text(self.content)
+            .font(.system(size: 18.0))
         }
         .padding()
     }
@@ -44,9 +54,9 @@ struct MemoDetailView: View {
 
     var body: some View {
         VStack {
-            MemoContent(title: "fact", content: self.fact)
-            MemoContent(title: "abstract", content: self.abstract)
-            MemoContent(title: "product", content: self.product)
+            MemoContent(title: MemoType.fact.rawValue, content: self.fact, systemName: MemoSystemNameType.fact.rawValue)
+            MemoContent(title: MemoType.abstract.rawValue, content: self.abstract, systemName: MemoSystemNameType.abstract.rawValue)
+            MemoContent(title: MemoType.product.rawValue, content: self.product, systemName: MemoSystemNameType.product.rawValue)
             Spacer()
         }
         .navigationBarItems(trailing: Button(action: {

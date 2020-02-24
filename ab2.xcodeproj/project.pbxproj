@@ -22,6 +22,8 @@
 		4760CE192400F5C700968B07 /* MemoEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE182400F5C700968B07 /* MemoEditView.swift */; };
 		4760CE1D2402735600968B07 /* MultilineField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE1C2402735600968B07 /* MultilineField.swift */; };
 		4760CE1F2402754A00968B07 /* MemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE1E2402754A00968B07 /* MemoController.swift */; };
+		4760CE212403AF8900968B07 /* MemoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE202403AF8900968B07 /* MemoListRow.swift */; };
+		4760CE232403B58600968B07 /* MemoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE222403B58600968B07 /* MemoTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		4760CE182400F5C700968B07 /* MemoEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoEditView.swift; sourceTree = "<group>"; };
 		4760CE1C2402735600968B07 /* MultilineField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineField.swift; sourceTree = "<group>"; };
 		4760CE1E2402754A00968B07 /* MemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoController.swift; sourceTree = "<group>"; };
+		4760CE202403AF8900968B07 /* MemoListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListRow.swift; sourceTree = "<group>"; };
+		4760CE222403B58600968B07 /* MemoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 				4760CDDA2400E05E00968B07 /* AppDelegate.swift */,
 				4760CDDC2400E05E00968B07 /* SceneDelegate.swift */,
 				4760CE0D2400E2C700968B07 /* MemoListView.swift */,
+				4760CE222403B58600968B07 /* MemoTag.swift */,
+				4760CE202403AF8900968B07 /* MemoListRow.swift */,
 				4760CE1E2402754A00968B07 /* MemoController.swift */,
 				4760CE132400E37300968B07 /* MemoCreateView.swift */,
 				4760CE1C2402735600968B07 /* MultilineField.swift */,
@@ -294,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4760CE122400E34600968B07 /* MemoDetailView.swift in Sources */,
+				4760CE232403B58600968B07 /* MemoTag.swift in Sources */,
 				4760CDDB2400E05E00968B07 /* AppDelegate.swift in Sources */,
+				4760CE212403AF8900968B07 /* MemoListRow.swift in Sources */,
 				4760CDDD2400E05E00968B07 /* SceneDelegate.swift in Sources */,
 				4760CE142400E37300968B07 /* MemoCreateView.swift in Sources */,
 				4760CE1D2402735600968B07 /* MultilineField.swift in Sources */,

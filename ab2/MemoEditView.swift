@@ -26,20 +26,12 @@ struct MemoEditView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: "multiply.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.gray)
+                    Image(systemName: "multiply")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.gray)
                     
                 }
-                Spacer()
-                VStack {
-                    Divider().overlay(
-                        RoundedRectangle(cornerRadius: 1)
-                            .stroke(Color.gray, lineWidth: 3)
-                    )
-                }
-                .frame(width: 100.0)
                 Spacer()
                 Button(action: {
                     MemoController.update(memo: self.memo, fact: self.fact, abstract: self.abstract, product: self.product)
@@ -52,42 +44,27 @@ struct MemoEditView: View {
             .padding(.top, 16.0)
             
             VStack(alignment: .leading) {
-                Text("事実")
+                Text(MemoType.fact.rawValue)
                     .font(.headline).padding(.bottom, -5.0)
                 MultilineField(text: $fact)
-                    .onAppear {
-                        if let unwrapped = self.memo.fact {
-                            self.fact = unwrapped.description
-                        }
-                }
                 .frame(height: 100)
                 .overlay(
                     RoundedRectangle(cornerRadius: 1)
                         .stroke(Color.gray, lineWidth: 0.2)
                 )
                 
-                Text("抽象的")
+                Text(MemoType.abstract.rawValue)
                     .font(.headline).padding(.bottom, -5.0).padding(.top, 20)
                 MultilineField(text: $abstract)
-                    .onAppear {
-                        if let unwrapped = self.memo.abstract {
-                            self.abstract = unwrapped.description
-                        }
-                }
                 .frame(height: 100)
                 .overlay(
                     RoundedRectangle(cornerRadius: 1)
                         .stroke(Color.gray, lineWidth: 0.2)
                 )
                 
-                Text("プロダクト")
+                Text(MemoType.product.rawValue)
                     .font(.headline).padding(.bottom, -5.0).padding(.top, 20)
                 MultilineField(text: $product)
-                    .onAppear {
-                        if let unwrapped = self.memo.product {
-                            self.product = unwrapped.description
-                        }
-                }
                 .frame(height: 100)
                 .overlay(
                     RoundedRectangle(cornerRadius: 1)
@@ -98,6 +75,17 @@ struct MemoEditView: View {
             }
             .padding()
             .keyboardObserving()
+        }
+        .onAppear {
+            if let unwrapped = self.memo.fact {
+                self.fact = unwrapped.description
+            }
+            if let unwrapped = self.memo.abstract {
+                self.abstract = unwrapped.description
+            }
+            if let unwrapped = self.memo.product {
+                self.product = unwrapped.description
+            }
         }
         .onTapGesture {
             self.endEditing()

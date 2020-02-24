@@ -8,6 +8,18 @@
 
 import SwiftUI
 
+enum MemoType:String {
+    case fact = "事実"
+    case abstract = "抽象化"
+    case product = "プロダクト"
+}
+
+enum MemoSystemNameType:String {
+    case fact = "pencil"
+    case abstract = "paperclip"
+    case product = "heart"
+}
+
 struct MemoController {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     

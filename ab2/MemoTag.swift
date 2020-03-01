@@ -14,6 +14,7 @@ struct MemoTag: View {
     
     var body: some View {
         HStack {
+            
             HStack {
             Image(systemName: systemName)
                 .resizable()
@@ -25,9 +26,15 @@ struct MemoTag: View {
             .padding(.vertical, 4)
             .padding(.horizontal, 8.0)
         }
-        .overlay(
-            RoundedRectangle(cornerRadius: 50)
-                .stroke(Color.gray, lineWidth: 0.2)
-        )
+        .background(ColorCode.main.color().opacity(0.15))
+        .foregroundColor(ColorCode.main.color())
+        .cornerRadius(20)
+    }
+}
+
+struct MemoTag_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        return MemoTag(text: "事実", systemName: "pencil")
     }
 }

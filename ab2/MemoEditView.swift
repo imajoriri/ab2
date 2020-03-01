@@ -37,7 +37,7 @@ struct MemoEditView: View {
                     MemoController.update(memo: self.memo, fact: self.fact, abstract: self.abstract, product: self.product)
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("save")
+                    Text("保存")
                 }
             }
             .padding(.horizontal, 16.0)

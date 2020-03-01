@@ -39,7 +39,7 @@ struct MemoCreateView: View {
                     MemoController.create(fact: self.fact, abstract: self.abstract, product: self.product)
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("save")
+                    Text("保存").foregroundColor(ColorCode.main.color())
                 }
             }
             .padding(.horizontal, 16.0)

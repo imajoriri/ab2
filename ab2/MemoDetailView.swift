@@ -55,14 +55,20 @@ struct MemoDetailView: View {
     var body: some View {
         VStack {
             MemoContent(title: MemoType.fact.rawValue, content: self.fact, systemName: MemoSystemNameType.fact.rawValue)
+            Divider().padding(.horizontal, 16.0)
+            
             MemoContent(title: MemoType.abstract.rawValue, content: self.abstract, systemName: MemoSystemNameType.abstract.rawValue)
+                .padding(.top, -15.0)
+            Divider().padding(.horizontal, 16.0)
+            
             MemoContent(title: MemoType.product.rawValue, content: self.product, systemName: MemoSystemNameType.product.rawValue)
+            .padding(.top, -15.0)
             Spacer()
         }
         .navigationBarItems(trailing: Button(action: {
             self.isEditView = true
         }){
-            Text("edit")
+            Text("編集").foregroundColor(ColorCode.main.color())
         }
         .sheet(isPresented: $isEditView) {
             MemoEditView(memo: self.memo)

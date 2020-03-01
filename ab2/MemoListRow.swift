@@ -10,21 +10,39 @@ import SwiftUI
 
 struct MemoListRow: View {
     let memo: Memo
+    let showMemoType:Int
     var fact:String
     var abstract:String
     var product:String
     
-    init(memo:Memo) {
+    init(memo:Memo, showMemoType: Int) {
         self.memo = memo
+        self.showMemoType = showMemoType
         self.fact = memo.fact != nil ? memo.fact!.description : ""
         self.abstract = memo.abstract != nil ? memo.abstract!.description : ""
         self.product = memo.product != nil ? memo.product!.description : ""
     }
     
+    func showText() -> String {
+        switch self.showMemoType {
+        case 0:
+            return self.fact
+        case 1:
+            return self.fact
+        case 2:
+            return self.abstract
+        case 3:
+            return self.product
+        default:
+            return self.fact
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text(memo.fact!.description)
-                .fontWeight(.bold)
+            Text(self.showText())
+                .fontWeight(.regular)
+                .lineLimit(1)
             
             HStack {
                 if !self.fact.isEmpty {
@@ -38,13 +56,18 @@ struct MemoListRow: View {
                 }
                 Spacer()
             }
+            .padding(.top, -8.0)
             .frame(width: 300)
         }
+        .padding(.vertical, 10.0)
     }
 }
 
 //struct MemoListRow_Previews: PreviewProvider {
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    @FetchRequest(entity: Memo.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memo.createdAt, ascending: false)], animation: nil) var memos: FetchedResults<Memo>
+//
 //    static var previews: some View {
-//        MemoListRow()
+//        MemoListRow(memo: memos.first)
 //    }
 //}

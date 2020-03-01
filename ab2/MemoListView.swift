@@ -10,10 +10,11 @@ import SwiftUI
 
 
 
-enum MemoListType {
-    case all
-    case unfinished
-    case product
+enum MemoListType:Int {
+    case all = 0
+    case fact = 1
+    case abstract = 2
+    case product = 3
 }
 
 struct MemoListView: View {
@@ -22,7 +23,7 @@ struct MemoListView: View {
     @State var isCreateView:Bool = true
     @State var deleteAlert:Bool = false
     @State var deleteMemo: MemoId?
-    @State var segmentPicker:MemoListType = .all
+    @State var segmentSelection:Int = 0
     
     func showDeleteAlert(offsets: IndexSet) {
         self.deleteMemo = MemoId(id: String(offsets.first!), memo: self.memos[offsets.first!])
@@ -33,40 +34,37 @@ struct MemoListView: View {
         var memo:Memo
     }
     
-    func isShowMemo(memo: Memo, listType: MemoListType) -> Bool {
+    func isShowMemo(memo: Memo, listType: Int) -> Bool {
         switch listType {
-        case .all:
+        case MemoListType.all.rawValue:
             return true
-        case .unfinished:
-            if let unwrappedProduct = memo.product {
-                return unwrappedProduct.description.isEmpty
+        case MemoListType.fact.rawValue:
+            return true
+        case MemoListType.abstract.rawValue:
+            if let unwrappedAbstract = memo.abstract {
+                return !unwrappedAbstract.description.isEmpty
             }
-            return true
-        case .product:
+            return false
+        case MemoListType.product.rawValue:
             if let unwrappedProduct = memo.product {
                 return !unwrappedProduct.description.isEmpty
             }
             return false
+        default:
+            return true
         }
     }
     
     var body: some View {
         NavigationView {
             VStack {
-                Picker(selection: $segmentPicker, label: Text("none")) {
-                    Text("全て").tag(MemoListType.all)
-                    Text("未達成").tag(MemoListType.unfinished)
-                    Text("プロダクト ").tag(MemoListType.product)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal, 16.0)
                 
                 List {
                     ForEach(memos, id: \.self) { memo in
                         Group {
-                            if self.isShowMemo(memo: memo, listType: self.segmentPicker) {
+                            if self.isShowMemo(memo: memo, listType: self.segmentSelection) {
                                 NavigationLink(destination: MemoDetailView(memo: memo)) {
-                                    MemoListRow(memo: memo)
+                                    MemoListRow(memo: memo, showMemoType: self.segmentSelection)
                                 }
                             }
                         }
@@ -80,25 +78,31 @@ struct MemoListView: View {
                                 }
                             },
                               secondaryButton: .cancel() {
-                            })
+                            }
+                        )
                     }
                 }
                 .navigationBarTitle(Text("メモ"))
                 .navigationBarItems(trailing: Button(action: {
                     self.isCreateView = true
                 }, label: {
-                    Text("add")
+                    Text("作成").foregroundColor(ColorCode.main.color())
                 })
                     .sheet(isPresented: $isCreateView) {
                         MemoCreateView()
                 })
+                
+                RoundSegmentView(selection: self.$segmentSelection, labels: ["全て", "事実", "抽象的", "プロダクト"])
+                .padding(.bottom, 20.0)
             }
         }
     }
 }
 
 struct MemoListView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        return MemoTag(text: "事実", systemName: "paperclip")
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return MemoListView().environment(\.managedObjectContext, context)
     }
 }

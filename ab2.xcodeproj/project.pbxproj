@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470B8DEB2406AD28008C67D8 /* ColorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DEA2406AD28008C67D8 /* ColorCodes.swift */; };
+		470B8DEF2407ED17008C67D8 /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DEE2407ED17008C67D8 /* HowToUseView.swift */; };
+		470B8DF124094B24008C67D8 /* SegControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DF024094B24008C67D8 /* SegControl.swift */; };
+		470B8DF5240BB46B008C67D8 /* RoundSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */; };
 		4760CDDB2400E05E00968B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDA2400E05E00968B07 /* AppDelegate.swift */; };
 		4760CDDD2400E05E00968B07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDC2400E05E00968B07 /* SceneDelegate.swift */; };
-		4760CDE02400E05E00968B07 /* ab2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDE2400E05E00968B07 /* ab2.xcdatamodeld */; };
+		4760CDE02400E05E00968B07 /* ab3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDE2400E05E00968B07 /* ab3.xcdatamodeld */; };
 		4760CDE42400E06000968B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4760CDE32400E06000968B07 /* Assets.xcassets */; };
 		4760CDE72400E06000968B07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4760CDE62400E06000968B07 /* Preview Assets.xcassets */; };
 		4760CDEA2400E06000968B07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4760CDE82400E06000968B07 /* LaunchScreen.storyboard */; };
@@ -24,6 +28,7 @@
 		4760CE1F2402754A00968B07 /* MemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE1E2402754A00968B07 /* MemoController.swift */; };
 		4760CE212403AF8900968B07 /* MemoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE202403AF8900968B07 /* MemoListRow.swift */; };
 		4760CE232403B58600968B07 /* MemoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CE222403B58600968B07 /* MemoTag.swift */; };
+		47AD3290240BEBCA002FEBFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AD328F240BEBCA002FEBFC /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470B8DEA2406AD28008C67D8 /* ColorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCodes.swift; sourceTree = "<group>"; };
+		470B8DEE2407ED17008C67D8 /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
+		470B8DF024094B24008C67D8 /* SegControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegControl.swift; sourceTree = "<group>"; };
+		470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSegmentView.swift; sourceTree = "<group>"; };
 		4760CDD72400E05E00968B07 /* ab2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ab2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4760CDDA2400E05E00968B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4760CDDC2400E05E00968B07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +75,7 @@
 		4760CE1E2402754A00968B07 /* MemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoController.swift; sourceTree = "<group>"; };
 		4760CE202403AF8900968B07 /* MemoListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListRow.swift; sourceTree = "<group>"; };
 		4760CE222403B58600968B07 /* MemoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTag.swift; sourceTree = "<group>"; };
+		47AD328F240BEBCA002FEBFC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,9 +129,14 @@
 			children = (
 				4760CDDA2400E05E00968B07 /* AppDelegate.swift */,
 				4760CDDC2400E05E00968B07 /* SceneDelegate.swift */,
+				47AD328F240BEBCA002FEBFC /* ContentView.swift */,
 				4760CE0D2400E2C700968B07 /* MemoListView.swift */,
+				470B8DF024094B24008C67D8 /* SegControl.swift */,
+				470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */,
+				470B8DEA2406AD28008C67D8 /* ColorCodes.swift */,
 				4760CE222403B58600968B07 /* MemoTag.swift */,
 				4760CE202403AF8900968B07 /* MemoListRow.swift */,
+				470B8DEE2407ED17008C67D8 /* HowToUseView.swift */,
 				4760CE1E2402754A00968B07 /* MemoController.swift */,
 				4760CE132400E37300968B07 /* MemoCreateView.swift */,
 				4760CE1C2402735600968B07 /* MultilineField.swift */,
@@ -130,7 +145,7 @@
 				4760CE112400E34600968B07 /* MemoDetailView.swift */,
 				4760CE182400F5C700968B07 /* MemoEditView.swift */,
 				4760CDEB2400E06000968B07 /* Info.plist */,
-				4760CDDE2400E05E00968B07 /* ab2.xcdatamodeld */,
+				4760CDDE2400E05E00968B07 /* ab3.xcdatamodeld */,
 				4760CDE52400E06000968B07 /* Preview Content */,
 			);
 			path = ab2;
@@ -299,17 +314,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				470B8DEB2406AD28008C67D8 /* ColorCodes.swift in Sources */,
 				4760CE122400E34600968B07 /* MemoDetailView.swift in Sources */,
+				47AD3290240BEBCA002FEBFC /* ContentView.swift in Sources */,
 				4760CE232403B58600968B07 /* MemoTag.swift in Sources */,
+				470B8DF124094B24008C67D8 /* SegControl.swift in Sources */,
+				470B8DEF2407ED17008C67D8 /* HowToUseView.swift in Sources */,
 				4760CDDB2400E05E00968B07 /* AppDelegate.swift in Sources */,
 				4760CE212403AF8900968B07 /* MemoListRow.swift in Sources */,
+				470B8DF5240BB46B008C67D8 /* RoundSegmentView.swift in Sources */,
 				4760CDDD2400E05E00968B07 /* SceneDelegate.swift in Sources */,
 				4760CE142400E37300968B07 /* MemoCreateView.swift in Sources */,
 				4760CE1D2402735600968B07 /* MultilineField.swift in Sources */,
 				4760CE192400F5C700968B07 /* MemoEditView.swift in Sources */,
 				4760CE1F2402754A00968B07 /* MemoController.swift in Sources */,
 				4760CE0E2400E2C700968B07 /* MemoListView.swift in Sources */,
-				4760CDE02400E05E00968B07 /* ab2.xcdatamodeld in Sources */,
+				4760CDE02400E05E00968B07 /* ab3.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,13 +671,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		4760CDDE2400E05E00968B07 /* ab2.xcdatamodeld */ = {
+		4760CDDE2400E05E00968B07 /* ab3.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				4760CDDF2400E05E00968B07 /* ab2.xcdatamodel */,
 			);
 			currentVersion = 4760CDDF2400E05E00968B07 /* ab2.xcdatamodel */;
-			path = ab2.xcdatamodeld;
+			path = ab3.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

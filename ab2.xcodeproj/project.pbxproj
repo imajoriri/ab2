@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		470B8DEB2406AD28008C67D8 /* ColorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DEA2406AD28008C67D8 /* ColorCodes.swift */; };
 		470B8DEF2407ED17008C67D8 /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DEE2407ED17008C67D8 /* HowToUseView.swift */; };
-		470B8DF124094B24008C67D8 /* SegControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DF024094B24008C67D8 /* SegControl.swift */; };
 		470B8DF5240BB46B008C67D8 /* RoundSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */; };
 		4760CDDB2400E05E00968B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDA2400E05E00968B07 /* AppDelegate.swift */; };
 		4760CDDD2400E05E00968B07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4760CDDC2400E05E00968B07 /* SceneDelegate.swift */; };
@@ -51,7 +50,6 @@
 /* Begin PBXFileReference section */
 		470B8DEA2406AD28008C67D8 /* ColorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCodes.swift; sourceTree = "<group>"; };
 		470B8DEE2407ED17008C67D8 /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
-		470B8DF024094B24008C67D8 /* SegControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegControl.swift; sourceTree = "<group>"; };
 		470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSegmentView.swift; sourceTree = "<group>"; };
 		4760CDD72400E05E00968B07 /* ab2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ab2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4760CDDA2400E05E00968B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				4760CDDC2400E05E00968B07 /* SceneDelegate.swift */,
 				47AD328F240BEBCA002FEBFC /* ContentView.swift */,
 				4760CE0D2400E2C700968B07 /* MemoListView.swift */,
-				470B8DF024094B24008C67D8 /* SegControl.swift */,
 				470B8DF4240BB46B008C67D8 /* RoundSegmentView.swift */,
 				470B8DEA2406AD28008C67D8 /* ColorCodes.swift */,
 				4760CE222403B58600968B07 /* MemoTag.swift */,
@@ -318,7 +315,6 @@
 				4760CE122400E34600968B07 /* MemoDetailView.swift in Sources */,
 				47AD3290240BEBCA002FEBFC /* ContentView.swift in Sources */,
 				4760CE232403B58600968B07 /* MemoTag.swift in Sources */,
-				470B8DF124094B24008C67D8 /* SegControl.swift in Sources */,
 				470B8DEF2407ED17008C67D8 /* HowToUseView.swift in Sources */,
 				4760CDDB2400E05E00968B07 /* AppDelegate.swift in Sources */,
 				4760CE212403AF8900968B07 /* MemoListRow.swift in Sources */,

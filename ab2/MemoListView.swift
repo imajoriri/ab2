@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-
-
-enum MemoListType:Int {
-    case all = 0
-    case fact = 1
-    case abstract = 2
-    case product = 3
-}
-
 struct MemoListView: View {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @FetchRequest(entity: Memo.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memo.createdAt, ascending: false)], animation: nil) var memos: FetchedResults<Memo>
@@ -36,16 +27,16 @@ struct MemoListView: View {
     
     func isShowMemo(memo: Memo, listType: Int) -> Bool {
         switch listType {
-        case MemoListType.all.rawValue:
+        case 0:
             return true
-        case MemoListType.fact.rawValue:
+        case 1:
             return true
-        case MemoListType.abstract.rawValue:
+        case 2:
             if let unwrappedAbstract = memo.abstract {
                 return !unwrappedAbstract.description.isEmpty
             }
             return false
-        case MemoListType.product.rawValue:
+        case 3:
             if let unwrappedProduct = memo.product {
                 return !unwrappedProduct.description.isEmpty
             }
@@ -56,45 +47,49 @@ struct MemoListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                
-                List {
-                    ForEach(memos, id: \.self) { memo in
-                        Group {
-                            if self.isShowMemo(memo: memo, listType: self.segmentSelection) {
-                                NavigationLink(destination: MemoDetailView(memo: memo)) {
-                                    MemoListRow(memo: memo, showMemoType: self.segmentSelection)
+        ZStack {
+            NavigationView {
+                VStack {
+                    
+                    List {
+                        ForEach(memos, id: \.self) { memo in
+                            Group {
+                                if self.isShowMemo(memo: memo, listType: self.segmentSelection) {
+                                    NavigationLink(destination: MemoDetailView(memo: memo)) {
+                                        MemoListRow(memo: memo, showMemoType: self.segmentSelection)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .onDelete(perform: showDeleteAlert)
-                    .alert(item: self.$deleteMemo) { memo in
-                        Alert(title: Text("削除しますか？"),
-                              primaryButton: .destructive(Text("Delete")) {
-                                if let unwrappedDeleteMemo = self.deleteMemo {
-                                    MemoController.delete(memo: unwrappedDeleteMemo.memo)
+                        .onDelete(perform: showDeleteAlert)
+                        .alert(item: self.$deleteMemo) { memo in
+                            Alert(title: Text("削除しますか？"),
+                                  primaryButton: .destructive(Text("Delete")) {
+                                    if let unwrappedDeleteMemo = self.deleteMemo {
+                                        MemoController.delete(memo: unwrappedDeleteMemo.memo)
+                                    }
+                                },
+                                  secondaryButton: .cancel() {
                                 }
-                            },
-                              secondaryButton: .cancel() {
-                            }
-                        )
+                            )
+                        }
                     }
+                    .navigationBarTitle(Text("メモ"))
+                    .navigationBarItems(trailing: Button(action: {
+                        self.isCreateView = true
+                    }, label: {
+                        Text("作成").foregroundColor(ColorCode.main.color())
+                    })
+                        .sheet(isPresented: $isCreateView) {
+                            MemoCreateView()
+                    })
                 }
-                .navigationBarTitle(Text("メモ"))
-                .navigationBarItems(trailing: Button(action: {
-                    self.isCreateView = true
-                }, label: {
-                    Text("作成").foregroundColor(ColorCode.main.color())
-                })
-                    .sheet(isPresented: $isCreateView) {
-                        MemoCreateView()
-                })
-                
-                RoundSegmentView(selection: self.$segmentSelection, labels: ["全て", "事実", "抽象的", "プロダクト"])
-                .padding(.bottom, 20.0)
             }
+            VStack {
+                Spacer()
+                RoundSegmentView(selection: self.$segmentSelection, labels: ["全て", "事実", "抽象的", "プロダクト"]).padding(.bottom, 20.0)
+            }
+
         }
     }
 }

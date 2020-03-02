@@ -14,7 +14,7 @@ struct RoundSegmentView: View {
     @Binding var selection:Int
     let labels:[String]
     @State var x:CGFloat = CGFloat(0)
-    @State var capWidth:CGFloat = CGFloat(0)
+    @State var capWidth:CGFloat = CGFloat(100)
     var backgroundColor:Color
     @State var selectedText:String = ""
     
@@ -69,8 +69,10 @@ struct RoundSegmentView: View {
         }
         .coordinateSpace(name: "myCoordination")
         .onAppear {
-            self.x = (UIScreen.main.bounds.width / CGFloat(2)) + (UIScreen.main.bounds.width / CGFloat(self.labels.count) / CGFloat(2))
+            self.x = CGFloat(0) - (UIScreen.main.bounds.width / CGFloat(2))
+                + (UIScreen.main.bounds.width / CGFloat(self.labels.count) / CGFloat(2))
             self.selectedText = self.labels.first ?? ""
+            self.capWidth = self.buttonFrameWidth()
         }
     }
 }

@@ -30,6 +30,12 @@ struct MemoListView: View {
         case 0:
             return true
         case 1:
+            if let unwrappedAbstract = memo.abstract {
+                return unwrappedAbstract.description.isEmpty
+            }
+            if let unwrappedProduct = memo.product {
+                return unwrappedProduct.description.isEmpty
+            }
             return true
         case 2:
             if let unwrappedAbstract = memo.abstract {
@@ -47,8 +53,9 @@ struct MemoListView: View {
     }
     
     var body: some View {
-        ZStack {
-            NavigationView {
+        NavigationView {
+            ZStack {
+                
                 VStack {
                     
                     List {
@@ -83,13 +90,15 @@ struct MemoListView: View {
                         .sheet(isPresented: $isCreateView) {
                             MemoCreateView()
                     })
+                    
+                    
+                }
+                VStack {
+                    Spacer()
+                    RoundSegmentView(selection: self.$segmentSelection, labels: ["全て", "事実", "抽象的", "プロダクト"])
+                        .padding(.bottom, 20.0)
                 }
             }
-            VStack {
-                Spacer()
-                RoundSegmentView(selection: self.$segmentSelection, labels: ["全て", "事実", "抽象的", "プロダクト"]).padding(.bottom, 20.0)
-            }
-
         }
     }
 }
